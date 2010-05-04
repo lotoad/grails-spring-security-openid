@@ -1,11 +1,16 @@
-<html>
-    <head>
-        <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-        <title>1. Introduction</title>
-        <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" title="Ref" charset="utf-8"/>
-    </head>
-    <body class="body">
-    The OpenID plugin adds <a href="http://en.wikipedia.org/wiki/OpenID" target="blank">OpenID</a> login support to a Grails application that uses Spring Security. It depends on the <a href="http://grails.org/plugin/spring-security-core" target="blank">Spring Security Core plugin</a>.<p class="paragraph"/>Using OpenID authentication frees you from having to maintain passwords for those users, but it also poses some challenges.<p class="paragraph"/>In a typical application that uses form-based logins with Spring Security, all of your user information is stored in the database. Since an OpenID user authenticates at an OpenID provider, you don't maintain their password but Spring Security needs information to populate an <a href="http://static.springsource.org/spring-security/site/docs/3.0.x/apidocs/org/springframework/security/core/Authentication.html" target="blank">Authentication</a> - username, roles, and account statuses (enabled, locked, etc.) Only the username is available from the OpenID login (plus optionally some attributes made available by <a href="http://openid.net/specs/openid-attribute-exchange-1_0.html" target="blank">Attribute Exchange</a>), and the rest is provided by your application, usually from the database.<p class="paragraph"/>The plugin supports two workflows to integrate OpenID authentication with local user accounts. One is user registration, and the other is linking one or more OpenIDs with a valid local account. Both workflows are triggered by a successful OpenID authentication followed by a <code>UsernameNotFoundException</code> indicating that a local user wasn't found. The plugin provides basic implementations of both workflows but each application is different, so you'll most likely need to customize and extend the initial implementation.
+<html><head><meta content='text/html; charset=utf-8' http-equiv='Content-type'></meta><title>1. Introduction</title><link title='Ref' charset='utf-8' rel='stylesheet' type='text/css' href='../css/main.css' media='screen'></link></head><body><body class='body'>
+    The OpenID plugin adds <a target='blank' href='http://en.wikipedia.org/wiki/OpenID'>OpenID</a> login support to a Grails application that uses Spring Security. It depends on the <a target='blank' href='http://grails.org/plugin/spring-security-core'>Spring Security Core plugin</a>.<p class='paragraph'></p>Using OpenID authentication frees you from having to maintain passwords for those users, but it also poses some challenges.<p class='paragraph'></p>In a typical application that uses form-based logins with Spring Security, all of your user information is stored in the database. Since an OpenID user authenticates at an OpenID provider, you don't maintain their password but Spring Security needs information to populate an <a target='blank' href='http://static.springsource.org/spring-security/site/docs/3.0.x/apidocs/org/springframework/security/core/Authentication.html'>Authentication</a> - username, roles, and account statuses (enabled, locked, etc.) Only the username is available from the OpenID login (plus optionally some attributes made available by <a target='blank' href='http://openid.net/specs/openid-attribute-exchange-1_0.html'>Attribute Exchange</a>), and the rest is provided by your application, usually from the database.<p class='paragraph'></p>The plugin supports two workflows to integrate OpenID authentication with local user accounts. One is user registration, and the other is linking one or more OpenIDs with a valid local account. Both workflows are triggered by a successful OpenID authentication followed by a <code>UsernameNotFoundException</code> indicating that a local user wasn't found. The plugin provides basic implementations of both workflows but each application is different, so you'll most likely need to customize and extend the initial implementation.
 
-    </body>
-</html>
+    
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-16219500-1']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script>
+</body></html>
