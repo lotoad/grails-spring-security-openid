@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+        <title>spring-security-openid 0.1 - Reference Documentation</title>
+        <link rel="stylesheet" href="../../css/ref.css" type="text/css" media="screen" title="Ref" charset="utf-8"/>
+    </head>
+    <body class="body">
+    <h1>s2-init-openid</h1><p class="paragraph"/><h2>Purpose</h2><p class="paragraph"/>Creates an OpenID controller and GSPs. The script takes no parameters.<p class="paragraph"/><h2>Usage</h2><p class="paragraph"/><pre class="bq"><code>
+   grails s2-init-openid</code></pre><p class="paragraph"/><h2>Description</h2><p class="paragraph"/>Creates example GSPs and an OpenID controller:
+<ul class="star">
+<li><code>grails-app/views/openId/auth.gsp</code> - an enhanced login page that toggles between an OpenID form with one input and a standard username/password login form</li>
+<li><code>grails-app/views/openId/createAccount.gsp</code> - allows a user who successfully authenticated via OpenID to create a new local account and associate the OpenID with it</li>
+<li><code>grails-app/views/openId/linkAccount.gsp</code> - allows a user who successfully authenticated via OpenID to link the OpenID with an existing local account</li>
+<li><code>grails-app/controllers/OpenIdController.groovy</code> - manages registration and link workflows</li>
+<li><code>grails-app/i18n/spring-security-openid.messages.properties</code> - i18n messages for registration and link workflows</li>
+</ul><p class="paragraph"/>
+    </body>
+</html>
