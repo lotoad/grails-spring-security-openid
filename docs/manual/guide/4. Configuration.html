@@ -1,16 +1,26 @@
-<html><head><meta content='text/html; charset=utf-8' http-equiv='Content-type'></meta><title>4. Configuration</title><link title='Ref' charset='utf-8' rel='stylesheet' type='text/css' href='../css/main.css' media='screen'></link></head><body><body class='body'><h1><a name='4. Configuration'>4. Configuration</a></h1>There are a few configuration options for OpenID.<p class='paragraph'></p><blockquote class='note'>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+        <title>4. Configuration</title>
+        <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" title="Ref" charset="utf-8"/>
+    </head>
+    <body class="body">
+    <h1><a name="4. Configuration">4. Configuration</a></h1>There are a few configuration options for OpenID.<p class="paragraph"/><blockquote class="note">
 All of these property overrides must be specified in <code>grails-app/conf/Config.groovy</code> using the <code>grails.plugins.springsecurity</code> suffix, for example
-<div class='code'><pre>grails.plugins.springsecurity.openid.domainClass =
-     'com.mycompany.myapp.OpenID'</pre></div></blockquote><p class='paragraph'></p><table cellpadding='0' class='wiki-table' border='0' cellspacing='0'><tr><th><strong class='bold'>Name</strong></th><th><strong class='bold'>Default</strong></th><th><strong class='bold'>Meaning</strong></th></tr><tr class='table-odd'><td>openid.claimedIdentityFieldName</td><td>'openid_identifier'</td><td>the login name form parameter</td></tr><tr class='table-even'><td>openid.nonceMaxSeconds</td><td>300</td><td>maximum life of the generated nonce shared with the OpenID provider; determines how long the authentication is allowed to take</td></tr><tr class='table-odd'><td>openid.domainClass</td><td>'OpenID'</td><td>the full class name of the many-to-one OpenID domain class</td></tr><tr class='table-even'><td>openid.registration.autocreate</td><td><code>true</code></td><td>if <code>true</code> will redirect valid OpenID authentications to the create and link user workflows, otherwise shows the standard login fail page</td></tr><tr class='table-odd'><td>openid.registration.requiredAttributes</td><td>none</td><td>required Attribute Exchange attributes</td></tr><tr class='table-even'><td>openid.registration.optionalAttributes</td><td>[email: 'http://schema.openid.net/contact/email']</td><td>optional Attribute Exchange attributes</td></tr><tr class='table-odd'><td>openid.registration.createAccountUri</td><td>'/login/openIdCreateAccount'</td><td>redirect address used when <code>openid.registration.autocreate</code> is <code>true</code></td></tr><tr class='table-even'><td>openid.registration.roleNames</td><td>['ROLE_USER']</td><td>a list of names of roles to grant to users who self-register after an OpenID authentication; the roles must already exist</td></tr><tr class='table-odd'><td>openid.userLookup.openIdsPropertyName</td><td>'openIds'</td><td>the name of the property in the user class for the OpenID domain class collection</td></tr></table><p class='paragraph'></p>
-<script type="text/javascript">
-	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', 'UA-16219500-1']);
-	_gaq.push(['_trackPageview']);
+<div class="code"><pre>grails.plugins.springsecurity.openid.domainClass =
+     'com.mycompany.myapp.OpenID'</pre></div>
+</blockquote><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Default</strong></th><th><strong class="bold">Meaning</strong></th></tr><tr class="table-odd"><td>openid.claimedIdentityFieldName</td><td>'openid_identifier'</td><td>the login name form parameter</td></tr><tr class="table-even"><td>openid.nonceMaxSeconds</td><td>300</td><td>maximum life of the generated nonce shared with the OpenID provider; determines how long the authentication is allowed to take</td></tr><tr class="table-odd"><td>openid.domainClass</td><td>'OpenID'</td><td>the full class name of the many-to-one OpenID domain class</td></tr><tr class="table-even"><td>openid.registration.autocreate</td><td><code>true</code></td><td>if <code>true</code> will redirect valid OpenID authentications to the create and link user workflows, otherwise shows the standard login fail page</td></tr><tr class="table-odd"><td>openid.registration.requiredAttributes</td><td>none</td><td>required Attribute Exchange attributes</td></tr><tr class="table-even"><td>openid.registration.optionalAttributes</td><td>&#91;email&#58; 'http://schema.openid.net/contact/email'&#93;</td><td>optional Attribute Exchange attributes</td></tr><tr class="table-odd"><td>openid.registration.createAccountUri</td><td>'/login/openIdCreateAccount'</td><td>redirect address used when <code>openid.registration.autocreate</code> is <code>true</code></td></tr><tr class="table-even"><td>openid.registration.roleNames</td><td>&#91;'ROLE_USER'&#93;</td><td>a list of names of roles to grant to users who self-register after an OpenID authentication; the roles must already exist</td></tr><tr class="table-odd"><td>openid.userLookup.openIdsPropertyName</td><td>'openIds'</td><td>the name of the property in the user class for the OpenID domain class collection</td></tr></table><p class="paragraph"/>
 
-	(function() {
-		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	})();
+    
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
 </script>
-</body></html>
+<script type="text/javascript">
+try{
+var pageTracker = _gat._getTracker('UA-16219500-1');
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+</body>
+</html>
