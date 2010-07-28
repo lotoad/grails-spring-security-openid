@@ -71,14 +71,15 @@ $ grails create-controller secure</code></pre><p class="paragraph"/>and add this
 $ grails run-app</code></pre><p class="paragraph"/>Navigate to <a href="http://localhost:8080/openidtest/secure/admins" target="blank">http://localhost:8080/openidtest/secure/admins</a> and you should be prompted with the login screen. Leave the Use OpenID checkbox checked and enter a valid OpenID. Don't check the remember-me checkbox yet (it doesn't work with the extended workflows where you create a new user or link an OpenID) and click the "Log in" button.<p class="paragraph"/>After authenticating at the OpenID provider, you'll be redirected to the registration page. Note that there's a link to just associate the current OpenID with a local account - for now click the "link this OpenID" link.<p class="paragraph"/>At the next screen enter the username and password for the user we created in BootStrap with ROLE_ADMIN ('admin'/'password') and you will be redirected to <a href="http://localhost:8080/openidtest/secure/admins" target="blank">http://localhost:8080/openidtest/secure/admins</a><p class="paragraph"/>To test that the OpenID is linked to your account, logout by navigating to <a href="http://localhost:8080/openidtest/logout/" target="blank">http://localhost:8080/openidtest/logout/</a> and navigate to <a href="http://localhost:8080/openidtest/secure/admins" target="blank">http://localhost:8080/openidtest/secure/admins</a>. Logging out removes the remember-me cookie, so authenticate again with your OpenID (this time check the remember-me checkbox) and it should skip the register/link step and go directly to the secured page. You can also repeat the process and switch to the username/password login and use that.<p class="paragraph"/>To test remember-me, close the browser and re-open it, and navigate to <a href="http://localhost:8080/openidtest/secure/admins" target="blank">http://localhost:8080/openidtest/secure/admins</a>. It should skip the authentication step entirely and show the page.<p class="paragraph"/><h4>User Registration</h4><p class="paragraph"/>Now let's create a new user associated with an OpenID. Logout again and navigate to <a href="http://localhost:8080/openidtest/secure/users" target="blank">http://localhost:8080/openidtest/secure/users</a> to initiate a login for a resource that requires ROLE_USER.<p class="paragraph"/>Since you've already associated the previous OpenID with a user, you either need to use a second OpenID, or restart the application to clear out the in-memory database.<p class="paragraph"/>Login using either the new OpenID or the original after restarting, and after authenticating externally you'll be redirected to the registration page. This time create a new user. By default the password validation rules are rather strict and you can change them, but for now enter a password that's at least 8 characters and contains at least one number and at least one symbol (e.g. !, #, $, %, etc.)<p class="paragraph"/>You should be redirected to <a href="http://localhost:8080/openidtest/secure/users" target="blank">http://localhost:8080/openidtest/secure/users</a> after creating the account. Now logout and log back in, both with the username/password for the account you created and the OpenID you linked and both should work.<p class="paragraph"/>
     
 <script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try{
-var pageTracker = _gat._getTracker('UA-16219500-1');
-pageTracker._trackPageview();
-} catch(err) {}
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-16219500-1']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
 </script>
 </body>
 </html>

@@ -30,14 +30,15 @@
 &#125;</pre></div><p class="paragraph"/>Now when an existing user authenticates with OpenID, you can detect that there's no local database with that username and display a page where the user can associate that OpenID with an existing account. Subsequent authentication attempts will use the plugin's enhanced <code>UserDetailsService</code> that looks for a user not just by username but also by OpenID, so OpenID authenticate attempts work fine, and form-based logins do too if they provide the correct password.<p class="paragraph"/><h4>New accounts</h4><p class="paragraph"/>That works for existing accounts, but how do we create these in the first place? When Spring Security throws a <code>UserNotFoundException</code> after a successful OpenID login, the plugin detects that the authentication is a valid OpenID authentication, and if configured to do so (i.e. if <code>grails.plugins.springsecurity.openid.registration.autocreate</code> is <code>true</code>) will redirect the user to a signup page. This way you can guide them through the process of creating an account. This is more efficient than presenting a regular registration workflow because their canonical OpenID for that provider will already be known and can be associated with the user record.<p class="paragraph"/>
     
 <script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try{
-var pageTracker = _gat._getTracker('UA-16219500-1');
-pageTracker._trackPageview();
-} catch(err) {}
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-16219500-1']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
 </script>
 </body>
 </html>
