@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>spring-security-openid 1.0 - Reference Documentation</title>
+        <title>spring-security-openid 1.0.1 - Reference Documentation</title>
         <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" title="Style" charset="utf-8"/>
         <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8" />
     </head>
@@ -16,7 +16,7 @@
             <div class="message">spring-security-openid</div>
             <h1>spring-security-openid - Reference Documentation</h1>
             <p><strong>Authors:</strong> Burt Beckwith</p>
-            <p><strong>Version:</strong> 1.0</p>
+            <p><strong>Version:</strong> 1.0.1</p>
             <em></em>
         </div>
 
@@ -27,17 +27,21 @@
         <div id="content">
             <h1><a name="1. Introduction">1. Introduction</a></h1>The OpenID plugin adds <a href="http://en.wikipedia.org/wiki/OpenID" target="blank">OpenID</a> login support to a Grails application that uses Spring Security. It depends on the <a href="http://grails.org/plugin/spring-security-core" target="blank">Spring Security Core plugin</a>.<p class="paragraph"/>Using OpenID authentication frees you from having to maintain passwords for those users, but it also poses some challenges.<p class="paragraph"/>In a typical application that uses form-based logins with Spring Security, all of your user information is stored in the database. Since an OpenID user authenticates at an OpenID provider, you don't maintain their password but Spring Security needs information to populate an <a href="http://static.springsource.org/spring-security/site/docs/3.0.x/apidocs/org/springframework/security/core/Authentication.html" target="blank">Authentication</a> - username, roles, and account statuses (enabled, locked, etc.) Only the username is available from the OpenID login (plus optionally some attributes made available by <a href="http://openid.net/specs/openid-attribute-exchange-1_0.html" target="blank">Attribute Exchange</a>), and the rest is provided by your application, usually from the database.<p class="paragraph"/>The plugin supports two workflows to integrate OpenID authentication with local user accounts. One is user registration, and the other is linking one or more OpenIDs with a valid local account. Both workflows are triggered by a successful OpenID authentication followed by a <code>UsernameNotFoundException</code> indicating that a local user wasn't found. The plugin provides basic implementations of both workflows but each application is different, so you'll most likely need to customize and extend the initial implementation.
 <h2><a name="1.1 History">1.1 History</a></h2><ul class="star">
+<li>Version 1.0.1</li>
+<ul class="star">
+<li>released February 13, 2011</li>
+</ul>
 <li>Version 1.0</li>
 <ul class="star">
-<li>released 07/27/2010</li>
+<li>released July 27, 2010</li>
 </ul>
 <li>Version 0.1.1</li>
 <ul class="star">
-<li>released 05/12/2010</li>
+<li>released May 12, 2010</li>
 </ul>
 <li>Version 0.1</li>
 <ul class="star">
-<li>released 05/03/2010</li>
+<li>released May 03, 2010</li>
 </ul></ul><p class="paragraph"/><h1><a name="2. Usage">2. Usage</a></h1>The central issue with integrating OpenID logins with local application users is that OpenID providers can allow multiple login names but the provider response will always be whatever their canonical name for your identity is. For example, I can login with my Yahoo address <code>burtbeckwith&#64;yahoo.com</code> but what is returned is a URL that looks like <code>https://me.yahoo.com/a/CkkjY454mYx10td2e05dqasd5Jedt8VAgg--%27</code>. If I had registered as a regular user on the site with <code>burtbeckwith&#64;yahoo.com</code> as my username, my login would fail unexpectedly. To get it to work I'd have to know my <code>https://me.yahoo.com/...</code> name to propertly register, which will frustrate users.<p class="paragraph"/>When a user authenticates in Spring Security, an <code>Authentication</code> is created and stored in a <code>ThreadLocal</code> by the <code>SecurityContextHolder</code>. Typically the <code>Authentication</code>'s principal is an instance of <code>UserDetails</code> (in the plugin this is implemented by the <code>GrailsUser</code> class) and this is a very simple class. It's really just a POJO with fields for username, password, granted authorities, and status booleans (enabled, account locked, etc.) So when an OpenID user has no associated local account, there's no direct way to specify authorities or the statuses (the password is optional in this case since that's only used for database authentication). We can assume the user is enabled as long as the OpenID authentication succeeded, so we really just need a way to determine what an OpenID user's roles are, otherwise they won't be able to do any more in the application than a non-authenticated user.<p class="paragraph"/><h4>Associating OpenIDs with local accounts</h4><p class="paragraph"/>This plugin has two features that address this issues. One is the ability to associate multiple OpenIDs with a user record. Recall that the Core plugin generates a user class that looks like this:<p class="paragraph"/><div class="code"><pre><span class="java&#45;keyword">package</span> com.yourcompany.yourapp<p class="paragraph"/>class User &#123;<p class="paragraph"/>   <span class="java&#45;object">String</span> username
    <span class="java&#45;object">String</span> password
    <span class="java&#45;object">boolean</span> enabled
