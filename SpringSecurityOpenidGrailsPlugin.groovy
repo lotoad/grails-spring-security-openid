@@ -29,13 +29,14 @@ import org.springframework.security.openid.OpenIDAuthenticationFilter
 
 class SpringSecurityOpenidGrailsPlugin {
 
-	String version = '1.0'
+	String version = '1.0.1'
 	String grailsVersion = '1.2.3 > *'
-	Map dependsOn = ['springSecurityCore': '1.0 > *']
+	Map dependsOn = [springSecurityCore: '1.0 > *']
 	List pluginExcludes = [
 		'grails-app/domain/**',
 		'docs/**',
-		'src/docs/**'
+		'src/docs/**',
+		'scripts/CreateOpenIdTestApps.groovy'
 	]
 
 	String author = 'Burt Beckwith'
@@ -52,13 +53,19 @@ class SpringSecurityOpenidGrailsPlugin {
 			return
 		}
 
-		println 'Configuring Spring Security OpenID ...'
 		SpringSecurityUtils.loadSecondaryConfig 'DefaultOpenIdSecurityConfig'
-		SpringSecurityUtils.registerProvider 'openIDAuthProvider'
-		SpringSecurityUtils.registerFilter 'openIDAuthenticationFilter', SecurityFilterPosition.OPENID_FILTER
-
 		// have to get again after overlaying DefaultOpenIdSecurityConfig
 		conf = SpringSecurityUtils.securityConfig
+
+		if (!conf.openid.active) {
+			return
+		}
+
+		println 'Configuring Spring Security OpenID ...'
+
+		SpringSecurityUtils.registerProvider 'openIDAuthProvider'
+		SpringSecurityUtils.registerFilter 'openIDAuthenticationFilter',
+				SecurityFilterPosition.OPENID_FILTER
 
 		openIDAuthProvider(OpenIDAuthenticationProvider) {
 			userDetailsService = ref('userDetailsService')
