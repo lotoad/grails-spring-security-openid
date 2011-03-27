@@ -15,7 +15,7 @@
 import org.codehaus.groovy.grails.plugins.springsecurity.NullLogoutHandlerRememberMeServices
 import org.codehaus.groovy.grails.plugins.springsecurity.SecurityFilterPosition
 import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils
-import org.codehaus.groovy.grails.plugins.springsecurity.openid.OpenIdAuthenticationFailureHandler 
+import org.codehaus.groovy.grails.plugins.springsecurity.openid.OpenIdAuthenticationFailureHandler
 import org.codehaus.groovy.grails.plugins.springsecurity.openid.OpenIdUserDetailsService
 
 import org.openid4java.consumer.InMemoryConsumerAssociationStore
@@ -29,9 +29,9 @@ import org.springframework.security.openid.OpenIDAuthenticationFilter
 
 class SpringSecurityOpenidGrailsPlugin {
 
-	String version = '1.0.1'
+	String version = '1.0.2'
 	String grailsVersion = '1.2.3 > *'
-	Map dependsOn = [springSecurityCore: '1.0 > *']
+	Map dependsOn = [springSecurityCore: '1.1.1 > *']
 	List pluginExcludes = [
 		'grails-app/domain/**',
 		'docs/**',
@@ -112,8 +112,7 @@ class SpringSecurityOpenidGrailsPlugin {
 
 		// custom subclass that searches by username and openIds
 		userDetailsService(OpenIdUserDetailsService) {
-			sessionFactory = ref('sessionFactory')
-			transactionManager = ref('transactionManager')
+			grailsApplication = ref('grailsApplication')
 		}
 
 		if (!conf.rememberMe.persistent) {
