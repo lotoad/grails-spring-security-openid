@@ -29,7 +29,7 @@ import org.springframework.security.openid.OpenIDAuthenticationFilter
 
 class SpringSecurityOpenidGrailsPlugin {
 
-	String version = '1.0.2'
+	String version = '1.0.3'
 	String grailsVersion = '1.2.3 > *'
 	Map dependsOn = [springSecurityCore: '1.1.1 > *']
 	List pluginExcludes = [
@@ -45,6 +45,13 @@ class SpringSecurityOpenidGrailsPlugin {
 	String description = 'OpenID authentication support for the Spring Security plugin.'
 
    String documentation = 'http://grails.org/plugin/spring-security-openid'
+
+	String license = 'APACHE'
+	def organization = [ name: 'SpringSource', url: 'http://www.springsource.org/' ]
+	def developers = [
+		 [ name: 'Burt Beckwith', email: 'beckwithb@vmware.com' ] ]
+	def issueManagement = [ system: 'JIRA', url: 'http://jira.grails.org/browse/GPSPRINGSECURITYOPENID' ]
+	def scm = [ url: 'https://github.com/grails-plugins/grails-spring-security-openid' ]
 
 	def doWithSpring = {
 
