@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>spring-security-openid 1.0.2 - Reference Documentation</title>
+        <title>spring-security-openid 1.0.3 - Reference Documentation</title>
         <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" title="Style" charset="utf-8"/>
         <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8" />
     </head>
@@ -16,7 +16,7 @@
             <div class="message">spring-security-openid</div>
             <h1>spring-security-openid - Reference Documentation</h1>
             <p><strong>Authors:</strong> Burt Beckwith</p>
-            <p><strong>Version:</strong> 1.0.2</p>
+            <p><strong>Version:</strong> 1.0.3</p>
             <em></em>
         </div>
 
@@ -27,6 +27,10 @@
         <div id="content">
             <h1><a name="1. Introduction">1. Introduction</a></h1>The OpenID plugin adds <a href="http://en.wikipedia.org/wiki/OpenID" target="blank">OpenID</a> login support to a Grails application that uses Spring Security. It depends on the <a href="http://grails.org/plugin/spring-security-core" target="blank">Spring Security Core plugin</a> and requires at least version 1.1.1.<p class="paragraph"/>Using OpenID authentication frees you from having to maintain passwords for those users, but it also poses some challenges.<p class="paragraph"/>In a typical application that uses form-based logins with Spring Security, all of your user information is stored in the database. Since an OpenID user authenticates at an OpenID provider, you don't maintain their password but Spring Security needs information to populate an <a href="http://static.springsource.org/spring-security/site/docs/3.0.x/apidocs/org/springframework/security/core/Authentication.html" target="blank">Authentication</a> - username, roles, and account statuses (enabled, locked, etc.) Only the username is available from the OpenID login (plus optionally some attributes made available by <a href="http://openid.net/specs/openid-attribute-exchange-1_0.html" target="blank">Attribute Exchange</a>), and the rest is provided by your application, usually from the database.<p class="paragraph"/>The plugin supports two workflows to integrate OpenID authentication with local user accounts. One is user registration, and the other is linking one or more OpenIDs with a valid local account. Both workflows are triggered by a successful OpenID authentication followed by a <code>UsernameNotFoundException</code> indicating that a local user wasn't found. The plugin provides basic implementations of both workflows but each application is different, so you'll most likely need to customize and extend the initial implementation.
 <h2><a name="1.1 History">1.1 History</a></h2><ul class="star">
+<li>Version 1.0.3</li>
+<ul class="star">
+<li>released July 31, 2011</li>
+</ul>
 <li>Version 1.0.2</li>
 <ul class="star">
 <li>released March 27, 2011</li>
