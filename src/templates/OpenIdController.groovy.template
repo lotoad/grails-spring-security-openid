@@ -179,7 +179,8 @@ class OpenIdController {
 		// check that the user exists, password is valid, etc. - doesn't actually log in or log out,
 		// just checks that user exists, password is valid, account not locked, etc.
 		daoAuthenticationProvider.authenticate(
-				new UsernamePasswordAuthenticationToken(username, password))
+			new UsernamePasswordAuthenticationToken(username, springSecurityService.encodePassword(password)))
+				
 
 		${userClassName}.withTransaction { status ->
 			def user = ${userClassName}.findBy${usernameCapName}(username)
